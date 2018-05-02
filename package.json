@@ -1,8 +1,8 @@
 {
-  "name": "FEC-Mo-Booking-Service",
+  "name": "Booking-Service",
   "version": "1.0.0",
-  "description": "Booking (Service part)",
-  "author": "Moyeong Lee(2000prcs@gmail.com)",
+  "description": "Bookings (Service part)",
+  "author": "",
   "license": "ISC",
   "engines": {
     "node": ">=6.13.0"
@@ -25,6 +25,7 @@
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.3",
     "express": "^4.16.3",
+    "faker": "^4.1.0",
     "jquery": "^3.3.1",
     "lodash": "^4.17.5",
     "material-ui": "^0.20.0",

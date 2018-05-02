@@ -23,8 +23,7 @@ const bookingSchema = mongoose.Schema({
   cleaning_fee: Boolean,
   review_count: Number,
   review_grade: Number,
-  // rare = true or false ?
-  created_date: { type: Date, default: Date.now },
+  created_date: Date,
 
 });
 
@@ -76,4 +75,5 @@ module.exports = {
   update,
   find,
   findOne,
+  Room,
 };

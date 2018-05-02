@@ -1,1 +1,3 @@
 node_modules
+./client/dist/bundle.min.js
+./database/data.json
