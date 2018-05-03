@@ -21,7 +21,7 @@ function create10k(loopNumber) {
     const bookings = [];
     for (let i = 1; i <= 10000; i++) {
       const booking = {};
-      booking.room_id = i * loopNumber;
+      booking.room_id = i + loopNumber;
       booking.room_name = faker.random.words();
       booking.world_name = faker.random.words();
       booking.keywords = faker.random.words();
@@ -75,8 +75,8 @@ function createOne() {
 createOne();
 
 async function makeBatch() {
-  for (let i = 1; i <= 1000; i++) {
-    await create10k(i);
+  for (let i = 0; i < 1000; i++) {
+    await create10k(i * 10000);
   }
 }
 
