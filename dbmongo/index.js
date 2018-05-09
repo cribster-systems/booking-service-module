@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/bookings')
+
+mongoose.connect('mongodb://localhost/bookings');
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -33,8 +34,7 @@ const Room = mongoose.model('room', bookingSchema);
 
 // adding booking dates to DB (only booked_dates)
 const update = (data, callback) => {
-
-  let newBooking = {
+  const newBooking = {
     room_id: data.id,
     booked_dates: data.booked,
     // guest_number: data.guest_number,
