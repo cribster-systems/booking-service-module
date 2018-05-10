@@ -17,8 +17,6 @@ const bookingSchema = mongoose.Schema({
   created_date: Date,
 });
 
-const Room = mongoose.model('room', bookingSchema);
+const Room = mongoose.model('Room', bookingSchema);
 
-module.exports = {
-  Room,
-};
+module.exports.Room = Room;

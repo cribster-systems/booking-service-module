@@ -8,8 +8,9 @@ const app = express();
 // connect to mlab database
 // make sure to replace my db string & creds with your own
 mongoose.connect('mongodb://localhost/bookings');
+
 mongoose.connection.once('open', () => {
-  console.log('conneted to database');
+  console.log('connected to database');
 });
 
 // bind express with graphql

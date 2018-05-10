@@ -5,8 +5,13 @@ import Form from './Form.jsx';
 import Finding from './Finding.jsx';
 import { Container } from 'semantic-ui-react';
 import styles from '../styles.css';
+import ApolloClient from 'apollo-boost';
 
 const axios = require('axios');
+
+const client = new ApolloClient({
+  uri: 'http://localhost:4000/graphql'
+})
 
 class Booking extends React.Component {
   constructor(props) {

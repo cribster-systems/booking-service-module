@@ -17,6 +17,7 @@
     "test": "jest -e --forceExit --coverage --verbose --updateSnapshot"
   },
   "dependencies": {
+    "apollo-boost": "^0.1.6",
     "axios": "^0.18.0",
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
@@ -29,6 +30,7 @@
     "faker": "^4.1.0",
     "graphql": "^0.13.2",
     "graphql-iso-date": "^3.5.0",
+    "graphql-tag": "^2.9.2",
     "graphql-yoga": "^1.13.1",
     "jquery": "^3.3.1",
     "lodash": "^4.17.10",
@@ -38,6 +40,7 @@
     "mongoose": "^5.0.14",
     "pg": "^7.4.1",
     "react": "^16.3.2",
+    "react-apollo": "^2.1.4",
     "react-dates": "^16.6.1",
     "react-dom": "^16.3.2",
     "react-star-ratings": "^2.2.0",
