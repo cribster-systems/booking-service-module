@@ -31,7 +31,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '/../client/dist')));
 
 // import DB
-const db = require('../database');
+const db = require('../dbmongo');
 
 // GET request
 app.get('/booking/:room_id', (req, res) => {

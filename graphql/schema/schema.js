@@ -23,7 +23,7 @@ const RoomType = new GraphQLObjectType({
     world_name: { type: GraphQLString },
     keywords: { type: GraphQLString },
     room_rate: { type: GraphQLInt },
-    booked_dates: { type: new GraphQLList(GraphQLDate) },
+    booked_dates: { type: new GraphQLList(GraphQLString) },
     guest_number: { type: GraphQLString },
     guest_name: { type: GraphQLString },
     host_name: { type: GraphQLString },
@@ -52,13 +52,13 @@ const Mutation = new GraphQLObjectType({
   name: 'mutation',
   fields: {
     bookDate: {
-      type: GraphQLDate,
+      type: GraphQLString,
       args: {
         room_id: { type: GraphQLInt },
-        date: { type: GraphQLDate },
+        date: { type: GraphQLString },
       },
       resolve(parent, args) {
-        return Room.findOneAndUpdate({ room_id: args.room_id }, { $push: { booked_dates: args.date.toISOString() } });
+        return Room.findOneAndUpdate({ room_id: args.room_id }, { $push: { booked_dates: args.date } });
       },
     },
   },

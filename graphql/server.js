@@ -2,11 +2,14 @@ const express = require('express');
 const graphqlHTTP = require('express-graphql');
 const schema = require('./schema/schema.js');
 const mongoose = require('mongoose');
+const cors = require('cors');
+const path = require('path');
 
 const app = express();
 
-// connect to mlab database
-// make sure to replace my db string & creds with your own
+app.use(cors());
+app.use(express.static(path.join(__dirname, '/../client/dist')));
+
 mongoose.connect('mongodb://localhost/bookings');
 
 mongoose.connection.once('open', () => {
