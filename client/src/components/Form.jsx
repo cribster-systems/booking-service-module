@@ -5,15 +5,25 @@ import Price from './Price.jsx';
 import styles from '../styles.css';
 import { Icon } from 'semantic-ui-react';
 
+import PropTypes from 'prop-types';
+import { Mutation, graphql, compose } from "react-apollo";
+import { gql } from "apollo-boost";
 
 const Moment = require('moment');
 const MomentRange = require('moment-range');
 
 const moment = MomentRange.extendMoment(Moment);
 require('twix');
-const axios = require('axios');
+//const axios = require('axios');
 
-export default class Form extends React.Component {
+const BOOK_DATE = gql`
+  mutation bookDate($room_id: Int!, $date: String!) {
+    bookDate(room_id: $room_id, date: $date)
+  }
+`;
+
+class Form extends React.Component {
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -41,7 +51,6 @@ export default class Form extends React.Component {
     this.showMenu = this.showMenu.bind(this);
     this.closeMenu = this.closeMenu.bind(this);
   }
-
 
   // Update user info every time user makes changes
   componentDidUpdate(prevProps, prevState) {
@@ -123,20 +132,33 @@ export default class Form extends React.Component {
 
 
   // Send booking request to the server
-  sendBookingRequest() {
+  sendBookingRequest({mutate}) {
     const data = {
       id: this.state.roomId,
       booked: this.state.booked,
-      guest_name: 'Mo',
+      guest_name: 'Mic',
     };
+    let mutated = false;
+    // axios.post('/booking', data)
+    //   .then((response) => {
+    //     alert('Congratulations! The room is reserved for you!');
+    //   })
+    //   .catch((error) => {
+    //     console.error(error);
+    //   });
 
-    axios.post('/booking', data)
-      .then((response) => {
-        alert('Congratulations! The room is reserved for you!');
-      })
-      .catch((error) => {
-        console.error(error);
+    for (var i = 0; i < data.booked.length; i++) {
+      mutated = true;
+      this.props.mutate({
+        mutation: BOOK_DATE,
+        variables: { room_id: data.id, date: data.booked[i] }
+      }).then(({ data }) => {
+        console.log('got data', data);
+      }).catch((error) => {
+        console.log('there was an error sending the query', error);
       });
+    }
+    mutated ? alert('Congratulations! The room is reserved for you!'): alert('Error, please try again')
   }
 
 
@@ -158,7 +180,6 @@ export default class Form extends React.Component {
 
 
   render() {
-
     return (
       <div className={styles.component}>
         <div>
@@ -261,3 +282,8 @@ export default class Form extends React.Component {
     );
   }
 }
+
+
+
+
+export default compose(graphql(BOOK_DATE))(Form);

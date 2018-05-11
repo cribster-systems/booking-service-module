@@ -1,0 +1,14 @@
+config:
+  target: 'http://localhost:4000/graphql'
+  phases:
+    - duration: 10
+      arrivalRate: 10
+      name: 'phase1'
+scenarios:
+  - name: >-
+      make queries for different rooms
+    flow:
+      - loop:
+          - get:
+              url: '/?query=%7B%0A%20%20%20%20Room(room_id%3A%20{{ $loopCount }})%7B%0A%20%20%20%20%20%20review_grade%0A%20%20%20%20%20%20review_count%0A%20%20%20%20%20%20room_id%0A%20%20%20%20%20%20room_rate%0A%20%20%20%20%20%20host_name%0A%20%20%20%09%20booked_dates%0A%20%20%20%20%7D%0A%20%20%7D'
+              count: 2
