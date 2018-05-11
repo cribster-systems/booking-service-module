@@ -35,7 +35,7 @@ class Booking extends React.Component {
     this.state = {
       scrolled: false,
       room: {
-        room_id: this.props.room,
+        room_id: this.props.room_id,
       },
     };
     this.handleScroll = this.handleScroll.bind(this);
@@ -73,7 +73,6 @@ class Booking extends React.Component {
         variables: { room_id: this.state.room.room_id }
       })
       .then((result) => {
-        console.log(result.data.Room);
         this.setState({ room: result.data.Room });
       });
   }
