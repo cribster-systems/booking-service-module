@@ -10,8 +10,6 @@ import { ApolloProvider } from 'react-apollo';
 import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
 
-const axios = require('axios');
-
 const client = new ApolloClient({
   uri: 'http://localhost:4000/graphql'
 })
@@ -46,27 +44,7 @@ class Booking extends React.Component {
     window.addEventListener('scroll', this.handleScroll);
   }
 
-  // fetch new room id from the server
-  componentDidUpdate(prevProps) {
-    // if (prevProps.room !== this.props.room) {
-    //   this.getRoomData();
-    // }
-  }
-
-  // Fetch this page's room data
   getRoomData() {
-    // webpack -p => 'production' & webpack -d => 'development' env swtich
-    // const url = (process.env.NODE_ENV === 'production') ? 'http://ec2-184-72-109-180.compute-1.amazonaws.com' : 'http://localhost:7777'; 
-  
-    // if (process.env.NODE_ENV !== 'production') {
-    //    console.log('Looks like we are in development mode!');
-    // }
-
-    // axios.get(`${url}/booking/${this.state.room.room_id}`)
-    //   .then((items) => {
-    //     this.setState({ room: items.data });
-    //   })
-    //   .catch(err => console.error(err));
     client
       .query({
         query: GET_ROOM_QUERY,

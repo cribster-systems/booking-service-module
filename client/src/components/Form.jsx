@@ -14,7 +14,6 @@ const MomentRange = require('moment-range');
 
 const moment = MomentRange.extendMoment(Moment);
 require('twix');
-//const axios = require('axios');
 
 const BOOK_DATE = gql`
   mutation bookDate($room_id: Int!, $date: String!) {
@@ -139,13 +138,6 @@ class Form extends React.Component {
       guest_name: 'Mic',
     };
     let mutated = false;
-    // axios.post('/booking', data)
-    //   .then((response) => {
-    //     alert('Congratulations! The room is reserved for you!');
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //   });
 
     for (var i = 0; i < data.booked.length; i++) {
       mutated = true;

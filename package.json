@@ -8,7 +8,7 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "start": "node server/index.js",
+    "start": "node graphql/server.js",
     "build": "grunt",
     "react-dev": "webpack -d --watch",
     "react-prod": "webpack -p",
