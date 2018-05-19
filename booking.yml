@@ -1,5 +1,5 @@
 config:
-  target: 'http://localhost:4000/graphql'
+  target: 'http://ec2-54-193-77-158.us-west-1.compute.amazonaws.com:4000/graphql'
   phases:
     - duration: 10
       arrivalRate: 10

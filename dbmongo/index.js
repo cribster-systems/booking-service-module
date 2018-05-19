@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/bookings');
+mongoose.connect('mongodb://172.17.0.2/bookings');
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -11,7 +11,11 @@ db.once('open', () => {
 // create a schema for DB data
 const bookingSchema = mongoose.Schema({
 
-  room_id: Number,
+  room_id: {
+    type: Number,
+    index: true,
+    unique: true,
+  },
   room_name: String,
   world_name: String,
   keywords: String,

@@ -6,20 +6,20 @@ const cors = require('cors');
 app.use(cors());
 
 const path = require('path');
-const port = process.env.PORT || 7777;
+const port = 7777;
 const responseTime = require('response-time');
-const redis = require('redis');
+//const redis = require('redis');
 
 // create a new redis client and connect to the local redis instance
 // For docker 
 // const client = redis.createClient('6379', '172.17.0.2');
 // For local
-const client = redis.createClient(6379, 'localhost');
+//const client = redis.createClient(6379, 'localhost');
 
 // if an error occurs, print it to the console
-client.on('error', (err) => {
-  console.log("Error " + err);
-});
+// client.on('error', (err) => {
+//   console.log("Error " + err);
+// });
 
 // set up the response-time middleware
 app.use(responseTime());

@@ -5,14 +5,31 @@ import Form from './Form.jsx';
 import Finding from './Finding.jsx';
 import { Container } from 'semantic-ui-react';
 import styles from '../styles.css';
-import ApolloClient from 'apollo-boost';
+// import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import { Query } from "react-apollo";
 import { gql } from "apollo-boost";
 
+import { ApolloClient } from 'apollo-client';
+import { HttpLink } from 'apollo-link-http';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import fetch from 'node-fetch';
+
 const client = new ApolloClient({
-  uri: 'http://localhost:4000/graphql'
-})
+  ssrMode: true,
+  link: new HttpLink({
+    uri: 'http://GQL-BALANCER-1800174033.us-west-1.elb.amazonaws.com/graphql',
+    fetch,
+  }),
+  cache: new InMemoryCache(),
+});
+
+//for server side rendering
+//const CSS = styles._getCss();
+
+// const client = new ApolloClient({
+//   uri: 'http://GQL-BALANCER-1800174033.us-west-1.elb.amazonaws.com/graphql'
+// })
 
 const GET_ROOM_QUERY = gql`
   query Room($room_id: Int!) {
@@ -33,7 +50,7 @@ class Booking extends React.Component {
     this.state = {
       scrolled: false,
       room: {
-        room_id: this.props.room_id,
+        room_id: this.props.locationId,
       },
     };
     this.handleScroll = this.handleScroll.bind(this);
@@ -89,9 +106,12 @@ class Booking extends React.Component {
   render() {
     return (
       <ApolloProvider client={client}>
-        <div id="container" onScroll={this.handleScroll} className={styles.container}>
-          <div className={styles.component}>       
-              { !this.state.room.room_rate ? 
+        <div>
+          {/* comment below out for client side rendering */}
+          {/* <style>{CSS}</style> */}
+          <div id="container" onScroll={this.handleScroll} className={styles.container}>
+            <div className={styles.component}>
+              {!this.state.room.room_rate ?
                 <span className={styles.dotContainer}>
                   <span className={styles.dots}>
                     <span className={styles.dot}></span>
@@ -99,20 +119,21 @@ class Booking extends React.Component {
                     <span className={styles.dot}></span>
                   </span>
                 </span>
-              : <div>
-                  <span className={styles.font}>${this.state.room.room_rate}</span> 
+                : <div>
+                  <span className={styles.font}>${this.state.room.room_rate}</span>
                   <span> per night</span>
                 </div>
               }
-          </div>
-          <div className={styles.component}>
-            <Stars room={this.state.room} />
-          </div >
-          <div className={styles.border} />
-          <Form room={this.state.room} />
-          <div id="finding" className={styles.component}>
-            <span className={styles.info}>You won't be charged yet</span>
-            <Finding scrolled={this.state.scrolled} room={this.state.room} />
+            </div>
+            <div className={styles.component}>
+              <Stars room={this.state.room} />
+            </div >
+            <div className={styles.border} />
+            <Form room={this.state.room} />
+            <div id="finding" className={styles.component}>
+              <span className={styles.info}>You won't be charged yet</span>
+              <Finding scrolled={this.state.scrolled} room={this.state.room} />
+            </div>
           </div>
         </div>
       </ApolloProvider>

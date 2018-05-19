@@ -1,7 +1,11 @@
 const mongoose = require('mongoose');
 
 const bookingSchema = mongoose.Schema({
-  room_id: Number,
+  room_id: {
+    type: Number,
+    index: true,
+    unique: true,
+  },
   room_name: String,
   world_name: String,
   keywords: String,
