@@ -1,5 +1,5 @@
 config:
-  target: 'http://ec2-54-193-77-158.us-west-1.compute.amazonaws.com:4000/graphql'
+  target: 'http://GQL-BALANCER-1800174033.us-west-1.elb.amazonaws.com/graphql'
   phases:
     - duration: 10
       arrivalRate: 10
@@ -11,4 +11,4 @@ scenarios:
       - loop:
           - get:
               url: '/?query=%7B%0A%20%20%20%20Room(room_id%3A%20{{ $loopCount }})%7B%0A%20%20%20%20%20%20review_grade%0A%20%20%20%20%20%20review_count%0A%20%20%20%20%20%20room_id%0A%20%20%20%20%20%20room_rate%0A%20%20%20%20%20%20host_name%0A%20%20%20%09%20booked_dates%0A%20%20%20%20%7D%0A%20%20%7D'
-              count: 2
+              count: 1
