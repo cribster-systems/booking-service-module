@@ -44,7 +44,7 @@ if (cluster.isMaster) {
 
   app.use('/:id', express.static(path.join(__dirname, '/../client/dist')));
 
-  mongoose.connect('mongodb://54.193.77.158/bookings');
+  mongoose.connect('mongodb://54.193.12.172/bookings');
 
   mongoose.connection.once('open', () => {
     console.log('connected to database');

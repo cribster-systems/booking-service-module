@@ -1,0 +1,18 @@
+AVERAGES
+
+---1 DATABASE INSTANCE
+1 server instance - 450 RPS - 110ms response time
+2 server instances - 800 RPS - 53ms response time - 43 request latency
+3 server instances - 1200 RPS - 30ms response time - 70 request latency
+4 server instances - 1450 RPS - 22ms response time - 53 request latency
+5 server instances - 1680 RPS - 15ms response time - 40 request latency
+6 server instances - 1500 RPS - 25ms response time -
+7 server instances - 1300 RPS - 26ms response time - 31 request latency
+
+---RETEST at 5 instances
+5 instances - 1600 RPS - 30ms response time
+
+---2 DATABASE INSTANCES
+6 server instances - 1800 RPS - 10ms response time
+8 server instances - 1800 RPS - 8ms response time
+10 server instances - 1900 RPS - 6ms response time

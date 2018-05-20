@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://172.17.0.2/bookings');
+mongoose.connect('mongodb://54.193.12.172:27017/bookings');
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
